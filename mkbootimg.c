@@ -24,13 +24,14 @@
 
 #include "mincrypt/sha.h"
 #include "bootimg.h"
-
+#include "bootimg_tools.h"
 static void *load_file(const char *fn, unsigned *_sz)
 {
     char *data;
     int sz;
     int fd;
-
+    printf("BUILDER:Alireza7991 <afn7991@gmail.com || www.alireza7991.net> \n");
+    printf("VERSION:%d", _BOOTTOOLS_VERSION_);
     data = 0;
     fd = open(fn, O_RDONLY);
     if(fd < 0) return 0;
@@ -57,7 +58,7 @@ oops:
 
 int usage(void)
 {
-    fprintf(stderr,"usage: mkbootimg\n"
+    fprintf(stderr,"USAGE  : mkbootimg\n"
             "       --kernel <filename>\n"
             "       --ramdisk <filename>\n"
             "       [ --second <2ndbootloader-filename> ]\n"
