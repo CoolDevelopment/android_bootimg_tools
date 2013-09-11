@@ -25,8 +25,8 @@
 ** ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "mincrypt/rsa.h"
-#include "mincrypt/sha.h"
+#include "../mincrypt/rsa.h"
+#include "../mincrypt/sha.h"
 
 /* a[] -= mod */
 static void subM(const RSAPublicKey *key, uint32_t *a) {
