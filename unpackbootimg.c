@@ -9,6 +9,7 @@
 
 #include "mincrypt/sha.h"
 #include "bootimg.h"
+#include "bootimg_tools.h"
 
 typedef unsigned char byte;
 
