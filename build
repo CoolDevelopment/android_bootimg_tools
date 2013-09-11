@@ -1,0 +1,4 @@
+$CC -static -O2 -o mkbootimg mkbootimg.c
+$CC -static -O2 -o unpackbootimg unpackbootimg.c
+
+	
