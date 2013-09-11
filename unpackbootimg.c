@@ -39,7 +39,7 @@ void write_string_to_file(char* file, char* string)
 }
 
 int usage() {
-    printf("usage: unpackbootimg\n");
+    printf("USAGE  : unpackbootimg\n");
     printf("\t-i|--input boot.img\n");
     printf("\t[ -o|--output output_directory]\n");
     printf("\t[ -p|--pagesize <size-in-hexadecimal> ]\n");
@@ -55,7 +55,8 @@ int main(int argc, char** argv)
 
     argc--;
     argv++;
-    printf("BUILDER:Andrew Huang <bluedrum@163.com>  http://bluedrum.sinaapp.com \n");
+    printf("BUILDER:Alireza7991 <afn7991@gmail.com || www.alireza7991.net> \n");
+    printf("VERSION:%d", _BOOTTOOLS_VERSION_);
     while(argc > 0){
         char *arg = argv[0];
         char *val = argv[1];
@@ -80,7 +81,7 @@ int main(int argc, char** argv)
     FILE* f = fopen(filename, "rb");
     boot_img_hdr header;
 
-    //printf("Reading header...\n");
+    printf("Reading header...\n");
     fread(&header, sizeof(header), 1, f);
     printf("BOARD_KERNEL_CMDLINE %s\n", header.cmdline);
     printf("BOARD_KERNEL_BASE %08x\n", header.kernel_addr - 0x00008000);
@@ -90,19 +91,19 @@ int main(int argc, char** argv)
         pagesize = header.page_size;
     }
     
-    //printf("cmdline...\n");
+    printf("cmdline...\n");
     sprintf(tmp, "%s/%s", directory, basename(filename));
     strcat(tmp, "-cmdline");
     write_string_to_file(tmp, header.cmdline);
     
-    //printf("base...\n");
+    printf("base...\n");
     sprintf(tmp, "%s/%s", directory, basename(filename));
     strcat(tmp, "-base");
     char basetmp[200];
     sprintf(basetmp, "%08x", header.kernel_addr - 0x00008000);
     write_string_to_file(tmp, basetmp);
 
-    //printf("pagesize...\n");
+    printf("pagesize...\n");
     sprintf(tmp, "%s/%s", directory, basename(filename));
     strcat(tmp, "-pagesize");
     char pagesizetmp[200];
@@ -110,27 +111,27 @@ int main(int argc, char** argv)
     write_string_to_file(tmp, pagesizetmp);
     
     total_read += sizeof(header);
-    //printf("total read: %d\n", total_read);
+    printf("total read: %d\n", total_read);
     total_read += read_padding(f, sizeof(header), pagesize);
 
     sprintf(tmp, "%s/%s", directory, basename(filename));
     strcat(tmp, "-zImage");
     FILE *k = fopen(tmp, "wb");
     byte* kernel = (byte*)malloc(header.kernel_size);
-    //printf("Reading kernel...\n");
+    printf("Reading kernel...\n");
     fread(kernel, header.kernel_size, 1, f);
     total_read += header.kernel_size;
     fwrite(kernel, header.kernel_size, 1, k);
     fclose(k);
 
-    //printf("total read: %d\n", header.kernel_size);
+    printf("total read: %d\n", header.kernel_size);
     total_read += read_padding(f, header.kernel_size, pagesize);
 
     sprintf(tmp, "%s/%s", directory, basename(filename));
     strcat(tmp, "-ramdisk.gz");
     FILE *r = fopen(tmp, "wb");
     byte* ramdisk = (byte*)malloc(header.ramdisk_size);
-    //printf("Reading ramdisk...\n");
+    printf("Reading ramdisk...\n");
     fread(ramdisk, header.ramdisk_size, 1, f);
     total_read += header.ramdisk_size;
     fwrite(ramdisk, header.ramdisk_size, 1, r);
@@ -138,6 +139,6 @@ int main(int argc, char** argv)
     
     fclose(f);
     
-    //printf("Total Read: %d\n", total_read);
+    printf("Total Read: %d\n", total_read);
     return 0;
 }
