@@ -1,3 +1,9 @@
+
+/* Copyright (c) 2013 Alireza Forozandeh Nezhad <afn7991@gmail.com || www.alireza7991.net> 
+ * forked from CyanogenMod
+ * under terms of GPL v3,0 licence
+ */
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,7 +45,7 @@ void write_string_to_file(char* file, char* string)
     fclose(f);
 }
 
-int usage() {
+int __inline usage() {
     printf("USAGE  : unpackbootimg\n");
     printf("\t-i|--input boot.img\n");
     printf("\t[ -o|--output output_directory]\n");
@@ -56,8 +62,7 @@ int main(int argc, char** argv)
 
     argc--;
     argv++;
-    printf("BUILDER:Alireza7991 <afn7991@gmail.com || www.alireza7991.net> \n");
-    printf("VERSION:%d", _BOOTTOOLS_VERSION_);
+    printf("Copyright (c) 2013 Alireza Forozandeh Nezhad <afn7991@gmail.com || www.alireza7991.net>");
     while(argc > 0){
         char *arg = argv[0];
         char *val = argv[1];
