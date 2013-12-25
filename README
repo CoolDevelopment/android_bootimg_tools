@@ -1,9 +1,8 @@
-* based on boot image tools in cm sources
+* Copyright (c) 2013-2014 Alireza Forozandeh Nezhad
+* licenced Under terms of GPL 2.0
 
 * build :
 
-install gcc , cd to sources folder :
-
-$export CC=arm-eabi-gcc
-$./build
+$ export CROSS_COMPILE=arm-unknown-linux-gnueabi- // change based on your cross compiler
+$ make
 
